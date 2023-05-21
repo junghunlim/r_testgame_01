@@ -25,7 +25,7 @@ void AEagle_RR::Tick(float DeltaTime)
 
 void AEagle_RR::Skill_01()
 {
-	//arrow_eagle_skill spawn�Ѵ�
+	//arrow_eagle_skill spawnÇÑ´Ù
 	FVector pawnLocation = GetActorLocation();
 	FVector arrowLocation(pawnLocation.X, pawnLocation.Y, pawnLocation.Z + 60);
 	FRotator SpawnRotation(0, 0, 0);
