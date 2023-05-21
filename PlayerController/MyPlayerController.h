@@ -22,7 +22,7 @@ public:
 
 	AMyPlayerController();
 
-	//¸í·ÉÀ§Á¬ º¸¿©ÁÖ±â
+	//ëª…ë ¹ìœ„ì ¯ ë³´ì—¬ì£¼ê¸°
 	void ShowOrderWidget();
 
 	void ShowGameScoreWidgetWin();
@@ -61,14 +61,14 @@ protected:
 	
 	virtual void BeginPlay() override;
 
-	//¸í·ÉÀ§Á¬ ºÒ·¯¿À±âÀ§ÇÑ~
+	//ëª…ë ¹ìœ„ì ¯ ë¶ˆëŸ¬ì˜¤ê¸°ìœ„í•œ~
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
 	TSubclassOf<class UOrderWidget> OrderWidgetClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
 	class UOrderWidget* OrderWidget;
 
-	//¸ŞÀÎHUDÀ§Á¬ ºÒ·¯¿À±âÀ§ÇÑ~
+	//ë©”ì¸HUDìœ„ì ¯ ë¶ˆëŸ¬ì˜¤ê¸°ìœ„í•œ~
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
 	TSubclassOf<class UHUDWidget> HUDWidget;
 
