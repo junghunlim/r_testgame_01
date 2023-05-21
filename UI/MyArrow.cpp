@@ -44,12 +44,12 @@ void AMyArrow::Tick(float DeltaTime)
 	{
 		if (GEngine && GEngine->GameViewport)
 		{
-			//È­»ìÇ¥ÀÇ Å©±âÁ¤ÇØÁÖ±â
+			//í™”ì‚´í‘œì˜ í¬ê¸°ì •í•´ì£¼ê¸°
 			GEngine->GameViewport->GetMousePosition(CurrentMousePosition);
 			MouseDelta = CurrentMousePosition - InitialMousePosition;
 			float ArrowLength = MouseDelta.Size() / 4.0 ;
 
-			//È­»ìÇ¥ ÃÖ´ë ±æÀÌ °íÁ¤
+			//í™”ì‚´í‘œ ìµœëŒ€ ê¸¸ì´ ê³ ì •
 			if (ArrowLength > 25) {
 				ArrowLength = 25;
 			}
@@ -57,7 +57,7 @@ void AMyArrow::Tick(float DeltaTime)
 			FVector ArrowScale(1 * ArrowLength, 4, 4);
 			ArrowComponent->SetRelativeScale3D(ArrowScale);
 			
-			//È­»ìÇ¥ÀÇ ¹æÇâ Á¤ÇØÁÖ±â
+			//í™”ì‚´í‘œì˜ ë°©í–¥ ì •í•´ì£¼ê¸°
 			FVector MouseDeltaDirection(MouseDelta.X, MouseDelta.Y , 0);
 			FRotator InvertMouseDeltaRotator = FRotationMatrix::MakeFromZ(MouseDeltaDirection).Rotator();
 			FRotator ArrowRotation = FRotator(0.0f, InvertMouseDeltaRotator.Yaw, 0.0f);
@@ -67,15 +67,15 @@ void AMyArrow::Tick(float DeltaTime)
 	}
 	if(controller->bClickLeftMouse == false && bClickMouse == true)
 	{
-		//È­»ìÇ¥ Á¦°Å
+		//í™”ì‚´í‘œ ì œê±°
 		ArrowComponent->DestroyComponent();
 
-		//Æù ÀÌµ¿
+		//í° ì´ë™
 		if (rrmoveable == true)
 		{
 			rrmoveable = false;
 			
-			//È­»ìÇ¥ ÃÖ´ë ±æÀÌ¿¡ ºñ·ÊÇÑ ÃÖ´ë force °íÁ¤ 
+			//í™”ì‚´í‘œ ìµœëŒ€ ê¸¸ì´ì— ë¹„ë¡€í•œ ìµœëŒ€ force ê³ ì • 
 			if (MouseDelta.Size() > 100.0) {
 				MouseDelta = MouseDelta*(100.0/MouseDelta.Size());
 			}
