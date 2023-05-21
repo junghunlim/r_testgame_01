@@ -114,14 +114,14 @@ void ABasic_RR::MoveThisRR(FVector Force)
 	meshcomp->AddForce(Force*200*meshcomp->GetMass());
 }
 
-//cat_rr ÀÇ ½ºÅ³
+//cat_rr ì˜ ìŠ¤í‚¬
 void ABasic_RR::Skill_01()
 {
-	//½ºÅ³ ui »ı¼º
+	//ìŠ¤í‚¬ ui ìƒì„±
 	FVector pawnLocation = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation();
 	FVector cat_foot_Location(pawnLocation.X, pawnLocation.Y, pawnLocation.Z + 30);
 
-	//µÎ ¹éÅÍ»çÀÕ°¢ ±¸ÇØ¼­ +90¸¸Å­ µ¹¸°À§Ä¡¿¡ spawnÇÏ±â
+	//ë‘ ë°±í„°ì‚¬ì‡ê° êµ¬í•´ì„œ +90ë§Œí¼ ëŒë¦°ìœ„ì¹˜ì— spawní•˜ê¸°
 	auto ai_rr = Cast<AAI_RR>(UGameplayStatics::GetActorOfClass(GetWorld(), AAI_RR::StaticClass()));
 	FVector airrLocation = ai_rr->GetActorLocation();
 	FVector aaloc = airrLocation - pawnLocation;
@@ -152,7 +152,7 @@ void ABasic_RR::NotifyActorOnClicked(FKey PressedButton)
 {
 	Super::NotifyActorOnClicked(PressedButton);
 
-	//ÄÁÆ®·Ñ·¯ °¡Á®¿Í¼­ ¸í·ÉÀ§Á¬ º¸¿©ÁÖ´ÂÇÔ¼ö ½ÇÇà 
+	//ì»¨íŠ¸ë¡¤ëŸ¬ ê°€ì ¸ì™€ì„œ ëª…ë ¹ìœ„ì ¯ ë³´ì—¬ì£¼ëŠ”í•¨ìˆ˜ ì‹¤í–‰ 
 	AMyPlayerController* controller = Cast<AMyPlayerController>(GetWorld()->GetFirstPlayerController());
 	controller->RemoveOrderWidget();
 	controller->Possess(this);
