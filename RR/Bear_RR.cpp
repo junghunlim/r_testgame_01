@@ -35,23 +35,23 @@ void ABear_RR::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-//bear_rr ÀÇ ½ºÅ³
+//bear_rr ì˜ ìŠ¤í‚¬
 void ABear_RR::Skill_01()
 {
-	//Å©±â¿Í ¹«°Ô¸¦ 20% Áõ°¡½ÃÅ²´Ù
+	//í¬ê¸°ì™€ ë¬´ê²Œë¥¼ 20% ì¦ê°€ì‹œí‚¨ë‹¤
 	meshcomp2 = Cast<UStaticMeshComponent>(GetRootComponent());
 	bear_size = FVector(bear_size.X * 1.2, bear_size.Y * 1.2, bear_size.Z * 1.2);
 	meshcomp2->SetRelativeScale3D(FVector(bear_size.X, bear_size.Y, bear_size.Z));
 	masskg = masskg * 1.2;
 	meshcomp2->SetMassOverrideInKg("bear", masskg);
 
-	//ÀÌÆåÆ®
+	//ì´í™íŠ¸
 	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), Bear_Skill_FX, GetActorLocation());
 
 	FTimerHandle TimerHandle;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, [&]()
 		{
-			//°ÔÀÓ¸ğµå °¡Á®¿Í¼­ cycle turnÇÏ¿© ÄÁÆ®·Ñ·¯ÀÇ end turnÇØ¼­ ´ÙÀ½ÅÏÀ¸·Î ³Ñ±ä´Ù
+			//ê²Œì„ëª¨ë“œ ê°€ì ¸ì™€ì„œ cycle turní•˜ì—¬ ì»¨íŠ¸ë¡¤ëŸ¬ì˜ end turní•´ì„œ ë‹¤ìŒí„´ìœ¼ë¡œ ë„˜ê¸´ë‹¤
 			auto MyGameMode = Cast<Ar_testgameGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
 			MyGameMode->CycleTurn();
 
