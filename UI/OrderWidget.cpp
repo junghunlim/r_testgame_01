@@ -41,7 +41,7 @@ void UOrderWidget::NativeConstruct()
 
 void UOrderWidget::Btn_Move_Cliked()
 {
-	//ȭ��ǥ ����
+	//È­»ìÇ¥ »ý¼º
 	FVector pawnLocation = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation();
 	FVector arrowLocation(pawnLocation.X , pawnLocation.Y , pawnLocation.Z + 60);
 	FRotator SpawnRotation(0, 0, 0);
