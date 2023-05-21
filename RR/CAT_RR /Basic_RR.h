@@ -33,7 +33,7 @@ public:
 	UStaticMeshComponent* meshcomp;
 
 
-	//º¯¼ö
+	//ë³€ìˆ˜
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FText RRClass;
 
@@ -59,23 +59,23 @@ public:
 
 	TWeakObjectPtr<class AMyPlayerState> CurrentPlayerRRState;
 
-	//¹«°Ô°¨
+	//ë¬´ê²Œê°
 	UPROPERTY(EditAnywhere)
 	float Weight;
 
-	//ÀÌµ¿°¡´É°Å¸®
+	//ì´ë™ê°€ëŠ¥ê±°ë¦¬
 	UPROPERTY(EditAnywhere)
 	int32 MovableDistance;
 
-	//Á×¾ú´ÂÁö »ì¾Ò´ÂÁö »óÅÂ
+	//ì£½ì—ˆëŠ”ì§€ ì‚´ì•˜ëŠ”ì§€ ìƒíƒœ
 	UPROPERTY(EditAnywhere)
 	bool AliveState;
 
-	//½ºÅ³ »ç¿ë°¡´ÉÈ½¼ö
+	//ìŠ¤í‚¬ ì‚¬ìš©ê°€ëŠ¥íšŸìˆ˜
 	UPROPERTY(EditAnywhere)
 	int32 Mana;
 
-	//º¸ÀÌ°ÔÇÏ´Â°Å ´õ¹Ì
+	//ë³´ì´ê²Œí•˜ëŠ”ê±° ë”ë¯¸
 	UPROPERTY(EditAnywhere)
 	USceneComponent* OurVisibleComponent;
 
