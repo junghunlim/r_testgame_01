@@ -29,7 +29,7 @@ void AMovementManager::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	
 	int checkint = 0;
-	//basic_rr °¡Á®¿Í¼­ Á¤ÁöÇß´ÂÁö È®ÀÎ
+	//basic_rr ê°€ì ¸ì™€ì„œ ì •ì§€í–ˆëŠ”ì§€ í™•ì¸
 	TArray<AActor*> tar_rr;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ABasic_RR::StaticClass(), tar_rr);
 	if (tar_rr.IsValidIndex(0))
@@ -39,7 +39,7 @@ void AMovementManager::Tick(float DeltaTime)
 			checkint += current_rr->CheckRRMove();
 		}
 	}
-	//ai_rr °¡Á®¿Í¼­ Á¤ÁöÇß´ÂÁö È®ÀÎ
+	//ai_rr ê°€ì ¸ì™€ì„œ ì •ì§€í–ˆëŠ”ì§€ í™•ì¸
 
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AAI_RR::StaticClass(), tar_rr);
 	if (tar_rr.IsValidIndex(0))
