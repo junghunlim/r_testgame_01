@@ -31,7 +31,7 @@ void AMyAIController::BeginPlay()
 void AMyAIController::MoveAI_RR()
 {
 
-	//AI_RR ADDFORCE ÇÏ±â
+	//AI_RR ADDFORCE í•˜ê¸°
 	currentAI_RR = Cast<AAI_RR>(GetPawn());
 	FVector airrloc = currentAI_RR->GetActorLocation();
 	currentBasic_RR = Cast<ABasic_RR>(UGameplayStatics::GetActorOfClass(GetWorld(), ABasic_RR::StaticClass()));
@@ -42,7 +42,7 @@ void AMyAIController::MoveAI_RR()
 	FVector Force = FVector(DeltaDirection.X, DeltaDirection.Y, 0.0f).GetSafeNormal() *30* 10;
 	currentAI_RR->MoveThisAIRR(Force);
 
-	//movementmanager ½ºÆùÇØ¼­ ¿òÁ÷ÀÓ ¸ØÃß¸é CycleTurn()
+	//movementmanager ìŠ¤í°í•´ì„œ ì›€ì§ìž„ ë©ˆì¶”ë©´ CycleTurn()
 	FTimerHandle TimerHandle;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, [&]()
 		{
