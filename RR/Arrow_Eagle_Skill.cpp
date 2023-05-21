@@ -42,12 +42,12 @@ void AArrow_Eagle_Skill::Tick(float DeltaTime)
 	{
 		if (GEngine && GEngine->GameViewport)
 		{
-			//È­»ìÇ¥ÀÇ Å©±âÁ¤ÇØÁÖ±â
+			//í™”ì‚´í‘œì˜ í¬ê¸°ì •í•´ì£¼ê¸°
 			GEngine->GameViewport->GetMousePosition(CurrentMousePosition);
 			MouseDelta = CurrentMousePosition - InitialMousePosition;
 			float ArrowLength = MouseDelta.Size() / 4.0;
 
-			//È­»ìÇ¥ ÃÖ´ë ±æÀÌ °íÁ¤
+			//í™”ì‚´í‘œ ìµœëŒ€ ê¸¸ì´ ê³ ì •
 			if (ArrowLength > 22) {
 				ArrowLength = 22;
 			}
@@ -55,7 +55,7 @@ void AArrow_Eagle_Skill::Tick(float DeltaTime)
 			FVector ArrowScale(1 * ArrowLength, 4, 4);
 			ArrowComponent->SetRelativeScale3D(ArrowScale);
 
-			//È­»ìÇ¥ÀÇ ¹æÇâ Á¤ÇØÁÖ±â
+			//í™”ì‚´í‘œì˜ ë°©í–¥ ì •í•´ì£¼ê¸°
 			FVector MouseDeltaDirection(MouseDelta.X, MouseDelta.Y, 0);			
 			InvertMouseDeltaRotator = FRotationMatrix::MakeFromZ(MouseDeltaDirection).Rotator();
 			FRotator ArrowRotation = FRotator(0.0f, InvertMouseDeltaRotator.Yaw, 0.0f);
@@ -65,16 +65,16 @@ void AArrow_Eagle_Skill::Tick(float DeltaTime)
 	}
 	if (controller->bClickLeftMouse == false && bClickMouse == true)
 	{
-		//È­»ìÇ¥ Á¦°Å
+		//í™”ì‚´í‘œ ì œê±°
 		ArrowComponent->DestroyComponent();
 
-		//Æù ÀÌµ¿
+		//í° ì´ë™
 		if (rrmoveable == true)
 		{
 			//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("move!"));
 			rrmoveable = false;
 
-			//skill_eagle ½ÇÇà
+			//skill_eagle ì‹¤í–‰
 			FVector pawnLocation = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation();
 			FVector arrowLocation(pawnLocation.X , pawnLocation.Y , pawnLocation.Z );
 			FRotator SpawnRotation(InvertMouseDeltaRotator.Pitch, InvertMouseDeltaRotator.Yaw, 0.0f);
@@ -84,7 +84,7 @@ void AArrow_Eagle_Skill::Tick(float DeltaTime)
 			FTimerHandle TimerHandle;
 			GetWorld()->GetTimerManager().SetTimer(TimerHandle, [&]()
 				{
-					//°ÔÀÓ¸ğµå °¡Á®¿Í¼­ cycle turnÇÏ¿© ÄÁÆ®·Ñ·¯ÀÇ end turnÇØ¼­ ´ÙÀ½ÅÏÀ¸·Î ³Ñ±ä´Ù
+					//ê²Œì„ëª¨ë“œ ê°€ì ¸ì™€ì„œ cycle turní•˜ì—¬ ì»¨íŠ¸ë¡¤ëŸ¬ì˜ end turní•´ì„œ ë‹¤ìŒí„´ìœ¼ë¡œ ë„˜ê¸´ë‹¤
 					auto MyGameMode = Cast<Ar_testgameGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
 					MyGameMode->CycleTurn();
 
