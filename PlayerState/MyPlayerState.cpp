@@ -3,7 +3,7 @@
 
 #include "MyPlayerState.h"
 
-//rrstate (rr1,rr2,rr3 ÇØ¼­ ÁöÁ¤ÇØÁÖ±â)
+//rrstate (rr1,rr2,rr3 Ã‡Ã˜Â¼Â­ ÃÃ¶ÃÂ¤Ã‡Ã˜ÃÃ–Â±Ã¢)
 FPlayerRRInfo rr_1;
 FPlayerRRInfo rr_2;
 FPlayerRRInfo rr_3;
