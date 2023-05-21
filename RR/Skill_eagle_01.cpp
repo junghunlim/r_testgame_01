@@ -10,14 +10,14 @@
 // Sets default values
 ASkill_eagle_01::ASkill_eagle_01()
 {
- 	//collisioncomp »ı¼º ¹× ¼³Á¤
+ 	//collisioncomp ìƒì„± ë° ì„¤ì •
 	collisioncomp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("collisioncomp"));
 	collisioncomp->SetStaticMesh(ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("/Game/FXVarietyPack/Meshes/SM_ky_tornado07")).Object);
 	
 	UMaterialInterface* NewMaterial = LoadObject<UMaterialInterface>(nullptr, TEXT("/Game/FXVarietyPack/Materials/MI_ky_storm01_aqua"));
 	collisioncomp->SetMaterial(0, NewMaterial);
 
-	//ParticleSystemcomp »ı¼º ¹× ¼³Á¤
+	//ParticleSystemcomp ìƒì„± ë° ì„¤ì •
 	OurParticleSystemcomp = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("OurParticleSystemcomp"));
 	OurParticleSystemcomp->SetupAttachment(collisioncomp);
 	OurParticleSystemcomp->bAutoActivate = true;
@@ -29,7 +29,7 @@ ASkill_eagle_01::ASkill_eagle_01()
 	}
 
 
-	//collisioncomp ¼³Á¤
+	//collisioncomp ì„¤ì •
 	collisioncomp->SetSimulatePhysics(true);
 	collisioncomp->SetEnableGravity(false);
 	collisioncomp->SetNotifyRigidBodyCollision(true);
@@ -39,7 +39,7 @@ ASkill_eagle_01::ASkill_eagle_01()
 	collisioncomp->SetMassOverrideInKg("skill_eagle", 10.0f);
 	RootComponent = collisioncomp;
 
-	//ProjectileMovementComp »ı¼º ¹× ¼³Á¤
+	//ProjectileMovementComp ìƒì„± ë° ì„¤ì •
 	ProjectileMovementComp = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovementComp"));
 	ProjectileMovementComp->SetUpdatedComponent(collisioncomp);
 	ProjectileMovementComp->InitialSpeed = 1000.0f;
@@ -65,7 +65,7 @@ void ASkill_eagle_01::BeginPlay()
 
 void ASkill_eagle_01::OnHitActor(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
-	//½ºÅ³ Á¦°Å
+	//ìŠ¤í‚¬ ì œê±°
 	RootComponent->DestroyComponent();
 	ProjectileMovementComp->DestroyComponent();
 	OurParticleSystemcomp->DestroyComponent();
