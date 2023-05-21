@@ -19,14 +19,14 @@ AMyPlayerController::AMyPlayerController()
 	bShowMouseCursor = true;
 	bEnableClickEvents = true;
 
-	//¸í·Éwiget À§Á¬Å¬·¡½º¿¡ ºÒ·¯¿À±â
+	//ëª…ë ¹wiget ìœ„ì ¯í´ë˜ìŠ¤ì— ë¶ˆëŸ¬ì˜¤ê¸°
 	static ConstructorHelpers::FClassFinder<UOrderWidget> OrderWidget_C(TEXT("/Game/UI/BP_ORDERWidget"));
 	if (OrderWidget_C.Succeeded())
 	{
 		OrderWidgetClass = OrderWidget_C.Class;
 	}
 
-	//HUDwidget À§Á¬Å¬·¡½º¿¡ ºÒ·¯¿À±â
+	//HUDwidget ìœ„ì ¯í´ë˜ìŠ¤ì— ë¶ˆëŸ¬ì˜¤ê¸°
 	static ConstructorHelpers::FClassFinder<UHUDWidget> HUDWidget_C(TEXT("/Game/UI/BP_HUDWidget"));
 	if (HUDWidget_C.Succeeded())
 	{
@@ -44,19 +44,19 @@ void AMyPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	//È­¸é¿¡ HUDÀ§Á¬ º¸¿©ÁÖ±â
+	//í™”ë©´ì— HUDìœ„ì ¯ ë³´ì—¬ì£¼ê¸°
 	CurrentWidget = CreateWidget<UHUDWidget>(GetWorld(), HUDWidget);
 	CurrentWidget->AddToViewport();
 
-	//state¿Í ÇöÀçhudÀ§Á¬°ú ¹ÙÀÎµùÇØÁÖ±â
+	//stateì™€ í˜„ì¬hudìœ„ì ¯ê³¼ ë°”ì¸ë”©í•´ì£¼ê¸°
 	auto MyPlayerState = Cast<AMyPlayerState>(PlayerState);
 	CurrentWidget->BindPlayerState(MyPlayerState);
 	MyPlayerState->OnPlayerStateChanged.Broadcast();
 
-	//playercontroller ÀÇ myturn ¿Í ÇöÀç hudÀ§Á¬°ú ¹ÙÀÎµù ÇØÁÖ±â
+	//playercontroller ì˜ myturn ì™€ í˜„ì¬ hudìœ„ì ¯ê³¼ ë°”ì¸ë”© í•´ì£¼ê¸°
 	CurrentWidget->BindPlayerTurnState(this);
 
-	//playerstate ¶û basic_rr ¹ÙÀÎµùÇØÁÖ±â
+	//playerstate ë‘ basic_rr ë°”ì¸ë”©í•´ì£¼ê¸°
 	TArray<AActor*> basic_rr;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ABasic_RR::StaticClass(), basic_rr);
 
@@ -112,7 +112,7 @@ void AMyPlayerController::quitgame()
 	this->ConsoleCommand("quit");
 }
 
-//¸¶¿ì½º ÇÁ·¹½º,¸±¸®½º ÇÔ¼ö¶û ¹ÙÀÎµù
+//ë§ˆìš°ìŠ¤ í”„ë ˆìŠ¤,ë¦´ë¦¬ìŠ¤ í•¨ìˆ˜ë‘ ë°”ì¸ë”©
 void AMyPlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
@@ -127,7 +127,7 @@ void AMyPlayerController::PlayerTick(float DeltaTime)
 
 }
 
-//ÇöÀçRRÀ» ÀÌµ¿½ÃÅ²´Ù
+//í˜„ì¬RRì„ ì´ë™ì‹œí‚¨ë‹¤
 void AMyPlayerController::MoveRR(FVector2D MouseDelta)
 {
 	
@@ -136,7 +136,7 @@ void AMyPlayerController::MoveRR(FVector2D MouseDelta)
 	auto currentRR2 = Cast<ABasic_RR>(GetPawn());
 	currentRR2->MoveThisRR(Force);
 	
-	//movementmanager ½ºÆùÇØ¼­ ¿òÁ÷ÀÓ ¸ØÃß¸é CycleTurn()
+	//movementmanager ìŠ¤í°í•´ì„œ ì›€ì§ì„ ë©ˆì¶”ë©´ CycleTurn()
 	FTimerHandle TimerHandle;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, [&]()
 		{
@@ -157,20 +157,20 @@ void AMyPlayerController::EndTurn()
 	bool myturn = false;
 	SetMyTurn(myturn);
 
-	//¸í·ÉÀ§Á¬ Á¦°Å
+	//ëª…ë ¹ìœ„ì ¯ ì œê±°
 	RemoveOrderWidget();
 
-	//°ÔÀÓ½ºÄÚ¾î È®ÀÎ ÇÔ¼ö½ÇÇà
+	//ê²Œì„ìŠ¤ì½”ì–´ í™•ì¸ í•¨ìˆ˜ì‹¤í–‰
 	CheckGameScore();
 }
 
 void AMyPlayerController::CheckGameScore()
 {
 	FTimerHandle TimerHandle2;
-	//³ªÀÇ Æù °¡Á®¿Í¼­ nullÀÌ¸é lose È­¸é 
+	//ë‚˜ì˜ í° ê°€ì ¸ì™€ì„œ nullì´ë©´ lose í™”ë©´ 
 	if (UGameplayStatics::GetActorOfClass(GetWorld(), ABasic_RR::StaticClass()) == nullptr && UGameplayStatics::GetActorOfClass(GetWorld(), AAI_RR::StaticClass()) == nullptr)
 	{
-		//¹«½ÂºÎ
+		//ë¬´ìŠ¹ë¶€
 		ShowGameScoreWidgetDraw();
 
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle2, [&]()
@@ -180,7 +180,7 @@ void AMyPlayerController::CheckGameScore()
 	}
 	if (UGameplayStatics::GetActorOfClass(GetWorld(), ABasic_RR::StaticClass()) != nullptr && UGameplayStatics::GetActorOfClass(GetWorld(), AAI_RR::StaticClass()) == nullptr)
 	{
-		//win Ãâ·Â
+		//win ì¶œë ¥
 		ShowGameScoreWidgetWin();
 
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle2, [&]()
@@ -205,7 +205,7 @@ void AMyPlayerController::CheckGameScore()
 
 void AMyPlayerController::RemoveOrderWidget()
 {
-	//¸í·ÉÀ§Á¬ Á¦°Å
+	//ëª…ë ¹ìœ„ì ¯ ì œê±°
 	if (OrderWidget != nullptr)
 	{
 		OrderWidget->RemoveFromViewport();
@@ -214,7 +214,7 @@ void AMyPlayerController::RemoveOrderWidget()
 
 void AMyPlayerController::SetMyTurn(bool myturn)
 {
-	//call on my turn changed(bool MyTurn) µ¨¸®°ÔÀÌÆ® ¸ÖÆ¼Ä³½ºÆÃ ÇÔ¼ö broadcastÇØÁÖ±â --> hudÀ§Á¬¿¡ your turn Ç¥½ÃÇØÁÖ´Â°Í
+	//call on my turn changed(bool MyTurn) ë¸ë¦¬ê²Œì´íŠ¸ ë©€í‹°ìºìŠ¤íŒ… í•¨ìˆ˜ broadcastí•´ì£¼ê¸° --> hudìœ„ì ¯ì— your turn í‘œì‹œí•´ì£¼ëŠ”ê²ƒ
 	OnPlayerTurnChanged.Broadcast(myturn);
 	bEnableClickEvents = myturn;
 }
