@@ -34,13 +34,13 @@ void ASkill_Cat_01::BeginPlay()
 
 	Skill_Cat_01_comp->OnComponentHit.AddDynamic(this, &ASkill_Cat_01::OnHitActor);
 
-	// TestFunction À» ÃÊ´ç 0.04 È¸, Ã³À½ 0.7 ÃÊÈÄ¿¡ È£ÃâÇÕ´Ï´Ù.
+	// TestFunction ì„ ì´ˆë‹¹ 0.04 íšŒ, ì²˜ìŒ 0.7 ì´ˆí›„ì— í˜¸ì¶œí•©ë‹ˆë‹¤.
 	GetWorldTimerManager().SetTimer(CountdownTimerHandle, this, &ASkill_Cat_01::RotateThisActor, 0.04f, true, 0.7f);
 
 	FTimerHandle TimerHandle;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, [&]()
 		{
-			//°ÔÀÓ¸ğµå °¡Á®¿Í¼­ cycle turnÇÏ¿© ÄÁÆ®·Ñ·¯ÀÇ end turnÇØ¼­ ´ÙÀ½ÅÏÀ¸·Î ³Ñ±ä´Ù
+			//ê²Œì„ëª¨ë“œ ê°€ì ¸ì™€ì„œ cycle turní•˜ì—¬ ì»¨íŠ¸ë¡¤ëŸ¬ì˜ end turní•´ì„œ ë‹¤ìŒí„´ìœ¼ë¡œ ë„˜ê¸´ë‹¤
 			auto MyGameMode = Cast<Ar_testgameGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
 			MyGameMode->CycleTurn();
 
@@ -56,7 +56,7 @@ void ASkill_Cat_01::RotateThisActor()
 	// Set the new rotation of the actor
 	SetActorRotation(NewRotation);
 
-	// Å¸ÀÌ¸Ó ÇØÁ¦
+	// íƒ€ì´ë¨¸ í•´ì œ
 	--CountDown;
 	if (CountDown <= 0)
 	{
@@ -71,7 +71,7 @@ void ASkill_Cat_01::OnHitActor(UPrimitiveComponent* HitComp, AActor* OtherActor,
 	GetWorldTimerManager().ClearTimer(CountdownTimerHandle);
 	Skill_Cat_01_comp->DestroyComponent();
 	
-	//addfoce ÇØÁÖ±â
+	//addfoce í•´ì£¼ê¸°
 	FVector HitLocation = Hit.ImpactPoint;
 	FVector ActorLocation = OtherActor->GetActorLocation();
 	FVector ForceDirection = ActorLocation - HitLocation;
