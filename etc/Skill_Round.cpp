@@ -1,5 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-//»ç¿ë ¾ÈÇÔ
+//ì‚¬ìš© ì•ˆí•¨
 
 #include "Skill_Round.h"
 #include "MyPlayerController.h"
@@ -36,12 +36,11 @@ void ASkill_Round::Tick(float DeltaTime)
 
 	if (GEngine && GEngine->GameViewport)
 	{
-		//È­»ìÇ¥ÀÇ Å©±âÁ¤ÇØÁÖ±â
+		//í™”ì‚´í‘œì˜ í¬ê¸°ì •í•´ì£¼ê¸°
 		GEngine->GameViewport->GetMousePosition(CurrentMousePosition);
 		FVector2D MouseDelta(CurrentMousePosition.X - 518 , CurrentMousePosition.Y - 425 );
 
-		//È­»ìÇ¥ÀÇ ¹æÇâ Á¤ÇØÁÖ±â
-		//¿©±â ¿À·ù(¸¶¿ì½ºÆ÷Áö¼Ç X,YÃà ´Ù¸§)°¡ ÀÖÁö¸¸ ÀÏ´Ü ³ÀµÒ! 
+		//í™”ì‚´í‘œì˜ ë°©í–¥ ì •í•´ì£¼ê¸°
 		FVector MouseDeltaDirection(-MouseDelta.Y, MouseDelta.X, 0);
 
 		
