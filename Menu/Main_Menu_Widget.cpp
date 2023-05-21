@@ -22,14 +22,14 @@ void UMain_Menu_Widget::NativeConstruct()
 //
 void UMain_Menu_Widget::Btn_VS_Cliked()
 {
-	//°ÔÀÓÁ¾·á
+	//Â°Ã”Ã€Ã“ÃÂ¾Â·Ã¡
 	APlayerController* controller1 = GetWorld()->GetFirstPlayerController();
 	controller1->ConsoleCommand("quit");
 }
 
 void UMain_Menu_Widget::Btn_StoryMode_Cliked()
 {
-	//½ºÅä¸® ¸ðµå
+	//Â½ÂºÃ…Ã¤Â¸Â® Â¸Ã°ÂµÃ¥
 	UGameplayStatics::OpenLevel(GetWorld(), "/Game/Map/Story_Mode");
 
 }
